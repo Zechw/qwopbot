@@ -1,6 +1,6 @@
 let rythmRunner = new function() {
-  //KeyCodes 81, 87, 79, 80 | q, w, o, p
-  this.keyRotation = [81, 87, 79, 80];
+  let q = 81, w = 87, o = 79, p = 80; //KeyCodes
+  this.keyRotation = [q,w,o,p];
   this.currentKeyIndex = 0;
   this.currentKey = function() {return this.keyRotation[this.currentKeyIndex];}
   this.pressKey = function(keyCode) {
@@ -23,10 +23,11 @@ let rythmRunner = new function() {
     this.currentKeyIndex = nextIndex;
   }
   this.run = function(){
+    this.stopRun();
     this.pressKey(this.currentKey())
     this.switchInterval = setInterval(() => {
       this.switchKeys();
-    }, 2000);
+    }, 200);
   }
   this.stopRun = function(){
     clearInterval(this.switchInterval);
